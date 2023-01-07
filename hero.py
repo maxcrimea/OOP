@@ -1,5 +1,6 @@
 class SuperHero:
     people = 'people'
+    """Главный класс"""
 
     def __init__(self, name, nickname, superpower, health_points, catchphrase):
         self.name = name
@@ -21,43 +22,18 @@ class SuperHero:
         return len(self.catchphrase)
 
 
-Hero = SuperHero('Flasher', 'Flasher', 'Freeze', 100,
+Ironmane = SuperHero('Flasher', 'Flash', 'Freeze', 100,
                  'I am Flash')  # передал значения в объект класса для проверки работы кода
 
-Hero.show_name()
-print(Hero.mul())
-print(Hero)
-print(len(Hero))
+Ironmane.show_name()
+print(Ironmane.mul())
+print(Ironmane)
+print(len(Ironmane))
 
 
-class SuperHero2(SuperHero):
-    people1 = 'people1'
-
-    def __init__(self, name, nickname, superpower, health_points, catchphrase, damage, fly):
-        super().__init__(name, nickname, superpower, health_points, catchphrase)
-        self.damage = False
-        self.fly = False
-
-    def mul(self):
-        super().mul()
-        self.fly = True
-        return self.health_points ** 2
-
-    def view_fly(self):
-        print('fly in the True_phrase')
-
-    def __str__(self):
-        return f'{self.fly} {self.superpower} {self.health_points}'
-
-
-Hero2 = SuperHero2('Flasher', 'Flasher', 'Freeze', 100, 'I am Flash', 50, 'fly')
-print(Hero2.mul())
-Hero2.view_fly()
-print(Hero2)
-
-
-class SuperHero3(SuperHero):
-    people2 = 'people2'
+class Hero2(SuperHero):
+    costume = True
+    """Класс супергероя Iron Man"""
 
     def __init__(self, name, nickname, superpower, health_points, catchphrase, damage, fly):
         super().__init__(name, nickname, superpower, health_points, catchphrase)
@@ -65,34 +41,52 @@ class SuperHero3(SuperHero):
         self.fly = False
 
     def mul(self):
-        super().mul()
         self.fly = True
-        return self.health_points ** 2
+        return pow(self.health_points, 2)
 
     def view_fly(self):
         print('fly in the True_phrase')
 
 
-Hero3 = SuperHero3('Flasher', 'Flasher', 'Freeze', 80, 'I am Flash', 70, 'fly')
-print(Hero3.mul())
-Hero3.view_fly()
-print(Hero3)
+Ironmane = Hero2('Tony Stark', 'Iron Man', 'fly & power', 100, 'I am Iron Man!', 50, 'fly')
+print(Ironmane.mul())
+Ironmane.view_fly()
+print(Ironmane)
 
 
-class villain(SuperHero3):
+class Hero3(SuperHero):
+    cape = True
+    """Класс супергероя Супермен"""
+
+    def __init__(self, name, nickname, superpower, health_points, catchphrase, damage, fly):
+        super().__init__(name, nickname, superpower, health_points, catchphrase)
+        self.damage = False
+        self.fly = False
+
+    def mul(self):
+        self.fly = True
+        return pow(self.health_points, 2)
+
+    def view_fly(self):
+        print('fly in the True_phrase')
+
+
+Superman = Hero3('Kal-El', 'Superman', 'very strong', 100, 'a job for Superman', 70, 'fly')
+print(Superman.mul())
+Superman.view_fly()
+print(Superman)
+
+
+class villain(Hero3):
     people = 'monster'
-
-    def __init__(self, name, nickname, superpower, health_points, catchphrase, damage, fly):
-        super().__init__(name, nickname, superpower, health_points, catchphrase, damage, fly)
 
     def gen_x(self):
         return None
 
     def crit(self):
-        return self.damage ** 2
+        return pow(self.damage, 3)
 
 
-vill = villain('Flasher', 'Flasher', 'Freeze', 60, 'I am Flash', 70, 'fly')
-vill.gen_x()
-print(villain.crit(Hero2))
-print(vill.gen_x())
+Beast = villain('Hank', 'Beast', 'Superhuman strength', 100, 'I am The Beast', 75, 'fly')
+print(Beast)
+print(villain.crit(Superman))
